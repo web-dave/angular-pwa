@@ -1,0 +1,22 @@
+{
+  "conferences": [
+    { "id": 1, "name": "ng-de", "buddies": 2 },
+    { "id": 2, "name": "ng-de1", "buddies": 7 }
+  ],
+  "buddies": [
+    {
+      "id": 1,
+      "name": "Dave",
+      "link": "@webdave_de",
+      "img": "",
+      "conferences": [1, 2]
+    },
+    {
+      "id": 2,
+      "name": "Tobi",
+      "link": "@tobmaster",
+      "img": "",
+      "conferences": [1, 2]
+    }
+  ]
+}
