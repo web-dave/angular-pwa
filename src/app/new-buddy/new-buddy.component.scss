@@ -1,0 +1,9 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  & > mat-form-field,
+  h2 {
+    width: 100%;
+  }
+}
