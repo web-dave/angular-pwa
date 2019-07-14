@@ -23,7 +23,9 @@ export class BuddiesComponent implements OnInit {
   );
   ngOnInit() {
     console.log(this.route.snapshot.params.id);
-    this.buddie$ = this.service.getBuddies(this.route.snapshot.params.id);
+    this.buddie$ = this.service.getBuddies(
+      parseInt(this.route.snapshot.params.id, 10)
+    );
   }
 
   constructor(

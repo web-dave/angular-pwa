@@ -16,9 +16,7 @@ export class BuddyService {
     return this.http.get<IBuddy[]>(this.url + 'buddies').pipe(
       tap(b => console.log(b)),
       map(buddies =>
-        buddies.filter(
-          buddy => buddy.conferences.indexOf(parseInt(id, 10)) !== -1
-        )
+        buddies.filter(buddy => buddy.conferences.indexOf(id) !== -1)
       ),
       tap(b => console.log(b))
     );
