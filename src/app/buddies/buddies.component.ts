@@ -1,33 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { BuddyService } from '../buddy.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-buddies',
   templateUrl: './buddies.component.html',
   styleUrls: ['./buddies.component.scss']
 })
-export class BuddiesComponent {
+export class BuddiesComponent implements OnInit {
+  buddie$;
   /** Based on the screen size, switch from standard to one column per row */
-  cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+  card = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       if (matches) {
-        return [
-          { title: 'Card 1', cols: 1, rows: 1 },
-          { title: 'Card 2', cols: 1, rows: 1 },
-          { title: 'Card 3', cols: 1, rows: 1 },
-          { title: 'Card 4', cols: 1, rows: 1 }
-        ];
+        return { cols: 1, rows: 1 };
       }
 
-      return [
-        { title: 'Card 1', cols: 2, rows: 1 },
-        { title: 'Card 2', cols: 1, rows: 1 },
-        { title: 'Card 3', cols: 1, rows: 2 },
-        { title: 'Card 4', cols: 1, rows: 1 }
-      ];
+      return { cols: 2, rows: 1 };
     })
   );
+  ngOnInit() {
+    console.log(this.route.snapshot.params.id);
+    this.buddie$ = this.service.getBuddies(this.route.snapshot.params.id);
+  }
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private service: BuddyService,
+    private route: ActivatedRoute
+  ) {}
 }

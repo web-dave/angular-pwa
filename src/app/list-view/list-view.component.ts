@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { BuddyService } from '../buddy.service';
 
 @Component({
   selector: 'app-list-view',
   templateUrl: './list-view.component.html',
   styleUrls: ['./list-view.component.scss']
 })
-export class ListViewComponent {
-  conferences = [
-    { id: 1, name: 'ng-de', buddies: 2 },
-    { id: 2, name: 'ng-de1', buddies: 7 }
-  ];
+export class ListViewComponent implements OnInit {
+  conference$;
   displayedColumns: string[] = ['name', 'buddies'];
-  constructor() {}
+  constructor(private service: BuddyService) {}
+  ngOnInit(): void {
+    this.conference$ = this.service.getConferences();
+  }
   selected(e) {
     console.log(e);
   }

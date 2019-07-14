@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="conferences" class="mat-elevation-z8">
+<table mat-table [dataSource]="conference$ | async" class="mat-elevation-z8">
   <h1>Conferences</h1>
 
   <!-- Name Column -->
