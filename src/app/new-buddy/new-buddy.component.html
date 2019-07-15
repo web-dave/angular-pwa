@@ -1,15 +1,27 @@
-<div class="form-container">
-  <h2>Join this Conferencs and get in touch with a Conference Buddy</h2>
-  <mat-form-field>
-    <input matInput placeholder="Name" />
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="IMG" />
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="link" />
-  </mat-form-field>
-  <button mat-fab>
-    <mat-icon>save</mat-icon>
-  </button>
-</div>
+<form [formGroup]="form" (ngSubmit)="save()">
+  <div class="form-container">
+    <h2>Join this Conferencs and get in touch with a Conference Buddy</h2>
+    <mat-form-field>
+      <input matInput placeholder="Name" formControlName="name" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="link" formControlName="link" />
+    </mat-form-field>
+    <img-cropper
+      #cropper
+      [image]="data"
+      [settings]="cropperSettings"
+    ></img-cropper>
+    <img
+      *ngIf="data?.image"
+      [src]="data.image"
+      [width]="cropperSettings.croppedWidth"
+      [height]="cropperSettings.croppedHeight"
+      style="border-radius: 100px"
+    />
+    <button mat-fab type="submit">
+      <mat-icon>save</mat-icon>
+    </button>
+  </div>
+</form>

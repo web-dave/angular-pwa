@@ -14,6 +14,7 @@ import {
   MatFormFieldModule,
   MatInputModule
 } from '@angular/material';
+import { ImageCropperModule } from 'ngx-img-cropper';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { ListViewComponent } from './list-view/list-view.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { BuddiesComponent } from './buddies/buddies.component';
 import { NewBuddyComponent } from './new-buddy/new-buddy.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { NewBuddyComponent } from './new-buddy/new-buddy.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     NoopAnimationsModule,
     MatTableModule,
     MatMenuModule,
@@ -44,7 +47,8 @@ import { NewBuddyComponent } from './new-buddy/new-buddy.component';
     LayoutModule,
     MatFormFieldModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    ImageCropperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

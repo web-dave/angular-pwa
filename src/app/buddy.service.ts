@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, tap, switchMap } from 'rxjs/operators';
+import { map, tap, switchMap, mergeMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -14,8 +14,32 @@ export class BuddyService {
     return this.http.get<IConf[]>(this.url + 'conferences');
   }
 
-  addConferences(conf: IConf): Observable<IConf[]> {
+  addConference(conf: IConf): Observable<IConf[]> {
     return this.http.post<IConf[]>(this.url + 'conferences', conf);
+  }
+
+  updateConference(conf: IConf): Observable<IConf> {
+    return this.http.put<IConf>(this.url + 'conferences/' + conf.id, conf);
+  }
+
+  // count how many buddies are at each conf
+  updateConfBuddyCount(buddies: IBuddy[]) {
+    this.getConferences()
+      .pipe(
+        map(v => {
+          console.log(v);
+          v.forEach(conf => {
+            conf.buddies = this.countBuddies(conf.id, buddies);
+            this.updateConference(conf).subscribe();
+          });
+        })
+      )
+      .subscribe();
+  }
+
+  countBuddies(confID: number, buddies: IBuddy[]): number {
+    return buddies.filter(buddy => buddy.conferences.indexOf(confID) !== -1)
+      .length;
   }
 
   getBuddies(id: number): Observable<IBuddy[]> {
@@ -28,10 +52,11 @@ export class BuddyService {
     );
   }
 
-  addBuddies(buddy: IBuddy, id: number): Observable<IBuddy[]> {
-    return this.http
-      .post<IBuddy[]>(this.url + 'buddies', buddy)
-      .pipe(switchMap(() => this.getBuddies(id)));
+  addBuddy(buddy: IBuddy, id: number): Observable<IBuddy[]> {
+    return this.http.post<IBuddy[]>(this.url + 'buddies', buddy).pipe(
+      switchMap(() => this.getBuddies(id)),
+      tap(b => this.updateConfBuddyCount(b))
+    );
   }
 }
 
