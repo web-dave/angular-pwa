@@ -53,10 +53,11 @@ export class NewBuddyComponent implements OnInit {
       id: [''],
       name: ['', Validators.required],
       link: ['', Validators.required],
-      img: ['', Validators.required],
+      img: [''],
       conferences: [[this.confId]]
     });
   }
+
   save() {
     const img = this.cropper.cropper.getCroppedImage(true).src;
     this.form.get('img').setValue(img);

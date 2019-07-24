@@ -1,0 +1,11 @@
+<form [formGroup]="form" (ngSubmit)="save()">
+  <div class="form-container">
+    <h2>Whats the name of the conference?</h2>
+    <mat-form-field>
+      <input matInput placeholder="Name" formControlName="name" />
+    </mat-form-field>
+    <button mat-fab type="submit" [disabled]="!form.valid">
+      <mat-icon>save</mat-icon>
+    </button>
+  </div>
+</form>

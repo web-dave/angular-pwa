@@ -23,6 +23,7 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import { BuddiesComponent } from './buddies/buddies.component';
 import { NewBuddyComponent } from './new-buddy/new-buddy.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NewConfComponent } from './new-conf/new-conf.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ListViewComponent,
     TopBarComponent,
     BuddiesComponent,
-    NewBuddyComponent
+    NewBuddyComponent,
+    NewConfComponent
   ],
   imports: [
     BrowserModule,

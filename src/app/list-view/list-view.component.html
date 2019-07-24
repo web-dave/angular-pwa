@@ -1,22 +1,25 @@
-<table mat-table [dataSource]="conference$ | async" class="mat-elevation-z8">
-  <h1>Conferences</h1>
+<div class="grid-container">
+  <a mat-fab [routerLink]="['add']"><mat-icon>add</mat-icon></a>
+  <table mat-table [dataSource]="conference$ | async" class="mat-elevation-z8">
+    <h1>Conferences</h1>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Name</th>
-    <td mat-cell *matCellDef="let conf" [routerLink]="[conf.id]">
-      {{ conf.name }}
-    </td>
-  </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let conf" [routerLink]="[conf.id]">
+        {{ conf.name }}
+      </td>
+    </ng-container>
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="buddies">
-    <th mat-header-cell *matHeaderCellDef>Buddies</th>
-    <td mat-cell *matCellDef="let conf" [routerLink]="[conf.id]">
-      {{ conf.buddies }}
-    </td>
-  </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="buddies">
+      <th mat-header-cell *matHeaderCellDef>Buddies</th>
+      <td mat-cell *matCellDef="let conf" [routerLink]="[conf.id]">
+        {{ conf.buddies }}
+      </td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

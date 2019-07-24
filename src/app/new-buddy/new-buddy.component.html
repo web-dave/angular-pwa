@@ -20,7 +20,7 @@
       [height]="cropperSettings.croppedHeight"
       style="border-radius: 100px"
     />
-    <button mat-fab type="submit">
+    <button mat-fab type="submit" [disabled]="!form.valid">
       <mat-icon>save</mat-icon>
     </button>
   </div>

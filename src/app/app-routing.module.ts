@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ListViewComponent } from './list-view/list-view.component';
 import { BuddiesComponent } from './buddies/buddies.component';
 import { NewBuddyComponent } from './new-buddy/new-buddy.component';
+import { NewConfComponent } from './new-conf/new-conf.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: 'conf',
     component: ListViewComponent
+  },
+  {
+    path: 'conf/add',
+    component: NewConfComponent
   },
   {
     path: 'conf/:id',
