@@ -24,7 +24,25 @@ self.addEventListener('install', e => {
 });
 self.addEventListener('activate', e => console.log('activate', e));
 self.addEventListener('fetch', e => {
-  e.respondWith(
-    caches.match(e.request).then(response => response || fetch(e.request))
-  );
+  if (e.request.url.indexOf('http://localhost:3000/') != -1) {
+    console.log('url', e.request.url);
+    e.respondWith(
+      fetch(e.request)
+        .then(response => {
+          return caches.open('angular-pwa-app-data-v1').then(cache => {
+            cache.put(e.request.url, response.clone());
+            return response.clone();
+          });
+        })
+        .catch(error => {
+          return caches.match(e.request).then(response => {
+            return response;
+          });
+        })
+    );
+  } else {
+    e.respondWith(
+      caches.match(e.request).then(response => response || fetch(e.request))
+    );
+  }
 });
