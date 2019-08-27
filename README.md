@@ -4,10 +4,9 @@ In this workshop you’ll learn how to install and configure @angular/pwa in you
 
 You’ll learn how to use the awesome features of PWA like:
 
-- caching
-- offline functionality
+- caching for offline functionality
 - App-like experience (install to homescreen)
 - push notifications.
 
-So you see: PWA comes wit great power.
+So you see: PWA comes with great power. \
 But keep in mind: With great power comes great responsibility!
