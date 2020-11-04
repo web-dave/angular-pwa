@@ -12,7 +12,8 @@ import {
   MatIconModule,
   MatButtonModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatSnackBarModule
 } from '@angular/material';
 import { ImageCropperModule } from 'ngx-img-cropper';
 
@@ -24,6 +25,8 @@ import { BuddiesComponent } from './buddies/buddies.component';
 import { NewBuddyComponent } from './new-buddy/new-buddy.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NewConfComponent } from './new-conf/new-conf.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,11 @@ import { NewConfComponent } from './new-conf/new-conf.component';
     MatFormFieldModule,
     MatInputModule,
     HttpClientModule,
-    ImageCropperModule
+    ImageCropperModule,
+    MatSnackBarModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

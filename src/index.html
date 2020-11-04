@@ -15,14 +15,13 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#1976d2" />
   </head>
   <body>
     <app-root></app-root>
+    <noscript
+      >Please enable JavaScript to continue using this application.</noscript
+    >
   </body>
-  <script>
-    navigator.serviceWorker
-      .register('./assets/sw.js')
-      .then(subscription => console.log(subscription))
-      .catch(err => console.error(err));
-  </script>
 </html>
